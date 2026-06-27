@@ -1,281 +1,168 @@
-
 # 📄 AI Resume Analyzer
 
-A production-ready resume analysis tool powered by Google Gemini AI. Upload a PDF resume, paste a job description, and get instant ATS scoring, skill gap analysis, improvement suggestions, and a personalized 8-week learning roadmap.
-
-Built with Streamlit + Python as a student portfolio project.
+An AI-powered Resume Analyzer built with **Python, Streamlit, and Google Gemini 2.5 Flash** that evaluates resumes against job descriptions, calculates ATS compatibility, identifies skill gaps, provides personalized recommendations, and generates professional PDF reports.
 
 ---
 
-## 🖼 What It Does
+## 🌐 Live Demo
 
-| Feature | Description |
-|---------|-------------|
-| **ATS Score** | 0–100 compatibility score vs the job description |
-| **Skill Matching** | Lists skills your resume has vs what the job needs |
-| **Gap Analysis** | Missing skills with priority levels and why they matter |
-| **Strengths** | What your resume does well |
-| **Suggestions** | Specific, actionable resume improvements |
-| **Learning Roadmap** | 8-week plan with real resources to close skill gaps |
-| **PDF Report** | Downloadable full analysis as a formatted PDF |
-| **JSON Export** | Raw analysis data for your own use |
+**Coming Soon** *(Will be deployed on Streamlit Community Cloud)*
 
 ---
 
-## 🏗 Project Architecture
+## ✨ Features
 
-```
+* 📄 Upload Resume in PDF format
+* 💼 Paste any Job Description
+* 🤖 AI-powered resume analysis using Google Gemini 2.5 Flash
+* 📊 ATS Compatibility Score
+* ✅ Matched Skills Detection
+* ❌ Missing Skills Analysis
+* 💪 Resume Strengths Identification
+* 🛠 Personalized Improvement Suggestions
+* 🗺 Personalized Learning Roadmap
+* 📈 Interactive Visual Analytics
+* 📑 Professional PDF Report Generation
+* 📁 JSON Export of Analysis Results
+
+---
+
+## 🛠 Tech Stack
+
+| Category               | Technologies                |
+| ---------------------- | --------------------------- |
+| Language               | Python                      |
+| Framework              | Streamlit                   |
+| AI Model               | Google Gemini 2.5 Flash API |
+| Data Visualization     | Plotly                      |
+| PDF Processing         | PyMuPDF                     |
+| PDF Report Generation  | ReportLab                   |
+| Environment Management | python-dotenv               |
+
+---
+
+## 📂 Project Structure
+
+```text
 resume_analyzer/
-├── app.py                      ← Main Streamlit application (entry point)
-├── requirements.txt            ← Python dependencies
-├── .env.example                ← Environment variable template
-├── .gitignore                  ← Git ignore rules
 │
 ├── .streamlit/
-│   └── config.toml             ← Streamlit theme configuration
+│   └── config.toml
 │
 ├── components/
-│   ├── __init__.py
-│   ├── styles.py               ← All custom CSS (dark theme)
-│   └── charts.py               ← Plotly visualizations
+│   ├── charts.py
+│   └── styles.py
 │
-└── utils/
-    ├── __init__.py
-    ├── pdf_reader.py           ← PDF text extraction
-    ├── gemini_client.py        ← Gemini AI API integration
-    └── report_generator.py     ← PDF report creation (ReportLab)
+├── utils/
+│   ├── ats_scoring.py
+│   ├── gemini_client.py
+│   ├── pdf_reader.py
+│   └── report_generator.py
+│
+├── app.py
+├── requirements.txt
+├── .env.example
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
 
 ---
 
-## 🔄 Data Flow
+## 🚀 Installation
 
-```
-User uploads PDF
-      │
-      ▼
-pdf_reader.py
-  extract_text_from_pdf()
-  └── PyPDF/PyPDF2 → raw text
-      │
-      ▼
-User pastes Job Description
-      │
-      ▼
-gemini_client.py
-  analyze_resume()
-  └── Build prompt → Gemini API → Parse JSON response
-      │
-      ▼
-app.py
-  render_results()
-  ├── components/charts.py    ← ATS gauge, radar, bar, table
-  ├── Skill tags (matched/missing)
-  ├── Strength cards
-  ├── Suggestion list
-  └── Learning roadmap (expandable)
-      │
-      ▼
-report_generator.py
-  generate_pdf_report()
-  └── ReportLab → PDF bytes → st.download_button
-```
+### 1. Clone the repository
 
----
-
-## ⚙️ Tech Stack
-
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| Frontend | Streamlit 1.35+ | UI framework |
-| AI | Google Gemini 2.0 Flash | Resume analysis |
-| PDF Read | pypdf / PyPDF2 | Extract resume text |
-| PDF Write | ReportLab | Generate analysis report |
-| Charts | Plotly | ATS gauge, radar, bar charts |
-| Data | Pandas | Missing skills table |
-| Config | python-dotenv | API key management |
-
----
-
-## 🚀 Quick Start (Local)
-
-### 1. Clone the repo
 ```bash
-git clone https://github.com/yourusername/resume-analyzer.git
-cd resume-analyzer
+git clone https://github.com/aniketkr-cs/AI-Resume-Analyzer.git
+cd AI-Resume-Analyzer
 ```
 
-### 2. Create a virtual environment
-```bash
-# macOS / Linux
-python3 -m venv venv
-source venv/bin/activate
+### 2. Install dependencies
 
-# Windows
-python -m venv venv
-venv\Scripts\activate
-```
-
-### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Get your Gemini API key
-1. Go to https://aistudio.google.com/app/apikey
-2. Click **Create API Key**
-3. Copy the key
+### 3. Create a `.env` file
 
-### 5. Set up environment variables
-```bash
-cp .env.example .env
-# Edit .env and paste your API key:
-# GEMINI_API_KEY=your_actual_key_here
+```env
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 ```
 
-### 6. Run the app
+Get your free Gemini API key from:
+
+https://aistudio.google.com/app/apikey
+
+### 4. Run the application
+
 ```bash
 streamlit run app.py
 ```
 
-The app opens at **http://localhost:8501**
+---
+
+## 📊 What the Analyzer Provides
+
+After analyzing a resume, the application generates:
+
+* ATS Compatibility Score
+* AI-generated Resume Summary
+* Matched Skills
+* Missing Skills
+* Resume Strengths
+* Improvement Suggestions
+* Personalized Learning Roadmap
+* Interactive Charts
+* Downloadable PDF Report
+* Downloadable JSON Report
 
 ---
 
-## 🌐 Deployment Guide
+## 📸 Screenshots
 
-### Option A: Streamlit Community Cloud (Free, Recommended)
+### Home Page
 
-1. Push your code to GitHub (make sure `.env` is in `.gitignore`)
-2. Go to https://share.streamlit.io
-3. Click **New app** → connect your repo
-4. Set **Main file path** to `app.py`
-5. Go to **Advanced settings → Secrets** and add:
-   ```
-   GEMINI_API_KEY = "your_key_here"
-   ```
-6. Click **Deploy**
+*(To be added after deployment)*
 
-> ⚠️ Do NOT commit your `.env` file with real keys to GitHub.
+### Analysis Dashboard
+
+*(To be added after deployment)*
+
+### PDF Report
+
+*(To be added after deployment)*
 
 ---
 
-### Option B: Railway
+## 🔮 Future Improvements
 
-```bash
-# Install Railway CLI
-npm install -g @railway/cli
-
-# Login and deploy
-railway login
-railway init
-railway add --variable GEMINI_API_KEY=your_key
-railway up
-```
+* Resume history and saved reports
+* Multiple resume comparison
+* Semantic skill matching using embeddings
+* AI-powered resume rewriting suggestions
+* Cover letter generation
+* Multi-language resume support
 
 ---
 
-### Option C: Docker
+## 🤝 Contributing
 
-```dockerfile
-FROM python:3.11-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
-EXPOSE 8501
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
-```
+Contributions, suggestions, and improvements are welcome.
 
-```bash
-docker build -t resume-analyzer .
-docker run -e GEMINI_API_KEY=your_key -p 8501:8501 resume-analyzer
-```
+Feel free to fork the repository and submit a pull request.
 
 ---
 
-### Option D: Render
+## 📄 License
 
-1. Push to GitHub
-2. Create a new **Web Service** on render.com
-3. Set **Build Command**: `pip install -r requirements.txt`
-4. Set **Start Command**: `streamlit run app.py --server.port $PORT --server.address 0.0.0.0`
-5. Add environment variable: `GEMINI_API_KEY`
+This project is licensed under the MIT License.
 
 ---
 
-## 🔑 API Key Notes
+## 👨‍💻 Author
 
-- **Gemini 2.0 Flash** is used by default (fast, capable, has a generous free tier)
-- Free tier: 1,500 requests/day, 1M tokens/minute
-- To change the model, edit `GEMINI_MODEL` in `.env` or modify `gemini_client.py`
+**Aniket Kumar**
 
----
-
-## 🧩 Module Reference
-
-### `utils/pdf_reader.py`
-- `extract_text_from_pdf(uploaded_file)` → `(text, error)`
-- Handles encrypted PDFs, image-only PDFs, size limits
-- Cleans extracted text (removes artifacts, extra whitespace)
-
-### `utils/gemini_client.py`
-- `analyze_resume(resume_text, job_description, api_key)` → `(analysis_dict, error)`
-- Sends carefully engineered prompt to Gemini
-- Parses JSON response with validation and fallback defaults
-- Retry logic for transient API errors
-
-### `utils/report_generator.py`
-- `generate_pdf_report(analysis, resume_text, job_description)` → `bytes`
-- Multi-page PDF with dark-ish professional styling
-- Includes all sections: score, skills, strengths, suggestions, roadmap
-
-### `components/charts.py`
-- `render_ats_gauge(score)` — Plotly indicator gauge
-- `render_skill_radar(matched, missing)` — Spider chart
-- `render_skill_match_bar(matched, missing)` — Horizontal stacked bar
-- `render_missing_skills_table(detail)` — Color-coded Pandas dataframe
-
-### `components/styles.py`
-- `inject_styles()` — Injects all custom CSS via `st.markdown`
-- Dark theme matching professional tools, not generic SaaS templates
-
----
-
-## 🐛 Troubleshooting
-
-| Problem | Fix |
-|---------|-----|
-| `GEMINI_API_KEY not found` | Add key to `.env` and restart the app |
-| `API key not valid` | Regenerate key at aistudio.google.com |
-| `No text found in PDF` | Your PDF is image-only; use a text-based PDF |
-| `Analysis failed` | Check API quota at console.cloud.google.com |
-| `PDF report failed` | Ensure `reportlab` is installed |
-| Charts not showing | Ensure `plotly` is installed |
-
----
-
-## 📁 Adding Your Own Features
-
-**To add a new chart:**
-1. Add the function to `components/charts.py`
-2. Import and call it in `app.py`'s `render_results()` function
-
-**To change the AI model:**
-1. Edit `model_name` in `utils/gemini_client.py`
-2. Available models: `gemini-2.0-flash`, `gemini-1.5-pro`, `gemini-1.5-flash`
-
-**To add a new analysis section:**
-1. Add the field to the JSON prompt in `gemini_client.py`
-2. Add a renderer in `app.py`'s `render_results()` function
-3. Add it to `report_generator.py` if it should appear in the PDF
-
----
-
-## 📝 License
-
-MIT License — free to use for personal and commercial projects.
-
----
-
-*Built as a student portfolio project demonstrating AI integration, PDF processing, data visualization, and production Streamlit architecture.*
+B.Tech Computer Science & Engineering Student 
+Built as a portfolio project to demonstrate practical skills in AI application development, prompt engineering, API integration, data visualization, PDF processing, and software engineering.
