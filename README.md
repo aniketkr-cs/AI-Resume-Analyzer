@@ -6,9 +6,10 @@ An AI-powered Resume Analyzer built with **Python, Streamlit, and Google Gemini 
 
 ## 🌐 Live Demo
 
-**Coming Soon** *(Will be deployed on Streamlit Community Cloud)*
+**Try the application here:**
 
----
+https://ai-resume-analyzer-7vqq9cx5vfpz2uagllrykp.streamlit.app/
+
 
 ## ✨ Features
 
@@ -121,18 +122,33 @@ After analyzing a resume, the application generates:
 
 ## 📸 Screenshots
 
-### Home Page
+### 🏠 Home Screen
 
-*(To be added after deployment)*
+![Home](assets/home.png)
 
-### Analysis Dashboard
+---
 
-*(To be added after deployment)*
+### 📄 Resume Upload & Job Description
 
-### PDF Report
+![Input](assets/input.png)
 
-*(To be added after deployment)*
+---
 
+### 📊 AI Analysis Dashboard
+
+![Dashboard](assets/dashboard.png)
+
+---
+
+### 💡 Skills Analysis & Recommendations
+
+![Insights](assets/insights.png)
+
+---
+
+### 📑 Generated PDF Report
+
+![Report](assets/report.png)
 ---
 
 ## 🔮 Future Improvements
