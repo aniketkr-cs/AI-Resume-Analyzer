@@ -162,6 +162,14 @@ After analyzing a resume, the application generates:
 
 ---
 
+## 📝 Notes
+
+- This project uses the Google Gemini 2.5 Flash API for AI-powered resume analysis.
+- A valid Gemini API key is required to run the application locally.
+- The public demo uses the free Gemini API tier, so availability may occasionally depend on API     usage limits.
+
+---
+
 ## 🤝 Contributing
 
 Contributions, suggestions, and improvements are welcome.
