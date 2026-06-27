@@ -200,17 +200,35 @@ def analyze_resume(
 
             # Handle specific API errors with friendly messages
             if "API_KEY_INVALID" in error_str or "API key not valid" in error_str:
-                return None, "Invalid Gemini API key. Please check your .env file."
-            elif "QUOTA_EXCEEDED" in error_str or "quota" in error_str.lower():
-                return None, "Gemini API quota exceeded. Please wait or upgrade your plan."
+             return None, (
+                  "⚠️ Invalid Gemini API key.\n\n"
+                  "Please verify that your API key is correct and configured properly."
+              )
+
+            elif "QUOTA_EXCEEDED" in error_str or "quota" in error_str.lower() or "429" in error_str:
+              return None, (
+                   "⚠️ AI service is temporarily unavailable.\n\n"
+                   "The configured Gemini API key has reached its usage limit.\n"
+                   "Please wait a few minutes and try again."
+              )
+
             elif "SAFETY" in error_str:
-                return None, "Content was flagged by safety filters. Please check your inputs."
+              return None, (
+                  "⚠️ The request could not be processed because it was blocked by the AI safety filters.\n"
+                  "Please try modifying the resume or job description."
+              )
+
             elif "404" in error_str and "model" in error_str.lower():
-                return None, "Gemini model not available. Try updating the model name in gemini_client.py."
+             return None, (
+                 "⚠️ The configured Gemini model could not be found.\n"
+                 "Please check the model configuration."
+              )
+
             else:
-                last_error = f"API error (attempt {attempt+1}): {error_str}"
-                if attempt < max_retries:
-                    time.sleep(2)
+              return None, (
+                 "⚠️ Unable to connect to the AI service.\n\n"
+                  "Please try again in a few moments."
+              )
 
     return None, last_error or "Analysis failed after all retries."
 
