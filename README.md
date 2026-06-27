@@ -1,3 +1,4 @@
+
 # 📄 AI Resume Analyzer
 
 A production-ready resume analysis tool powered by Google Gemini AI. Upload a PDF resume, paste a job description, and get instant ATS scoring, skill gap analysis, improvement suggestions, and a personalized 8-week learning roadmap.
